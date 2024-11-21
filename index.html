@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Man</title>
+    <style>
+        body {
+            background-color: #FFDAB9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .card {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 2em;
+            color: #FF69B4;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="https://gitee.com/twisted-fateu/image/raw/master/5ccc1dc316e99a5858679d02564a2f8.jpg" alt="Birthday Cake">
+        <div class="message" id="greeting"></div>
+    </div>
+
+    <script>
+        const messages = ['董昊哥哥真帅', '董昊哥哥记得内裤反穿哦'];
+        let currentMessageIndex = 0;
+        let letterIndex = 0;
+        const greetingElement = document.getElementById('greeting');
+
+        function typeWriter() {
+            if (letterIndex < messages[currentMessageIndex].length) {
+                greetingElement.textContent += messages[currentMessageIndex][letterIndex];
+                letterIndex++;
+                setTimeout(typeWriter, 100); // Speed of typing
+            } else {
+                letterIndex = 0;
+                currentMessageIndex++;
+                if (currentMessageIndex < messages.length) {
+                    setTimeout(() => {
+                        greetingElement.textContent = '';
+                        typeWriter();
+                    }, 1000); // Pause before next message
+                }
+            }
+        }
+
+        window.onload = () => {
+            typeWriter();
+        };
+    </script>
+</body>
+</html>
+
+
+
